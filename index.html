@@ -3,89 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моментальное пополнение Alipay и WeChat</title>
-    <meta name="description" content="Быстрое пополнение счетов Alipay и WeChat без комиссии в течение 15 минут. Гарантированная безопасность и надёжность операций.">
-    <meta name="keywords" content="обмен валют, пополнение Alipay, переводы WeChat, обмен юаней на рубли">
+    <title>Обмен Market</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            text-align: center;
+            color: #333;
         }
         .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            width: 80%;
+            margin: 0 auto;
         }
-        h1 {
-            color: #333;
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
-        p {
-            color: #666;
-            font-size: 18px;
+        header h1 {
+            text-align: center;
         }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #ff9800;
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-top: 10px;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 20px;
-            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
         }
-        .btn:hover {
-            background: #e68900;
+        .section {
+            display: none;
+            padding: 80px 20px;
+            min-height: 100vh;
         }
-        .features {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 30px;
+        .active {
+            display: block;
         }
-        .feature {
-            width: 30%;
-        }
-        .faq {
-            text-align: left;
-            margin-top: 40px;
-        }
-        .faq h2 {
-            color: #333;
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Мгновенное пополнение Alipay и WeChat</h1>
-        <p>Пополняйте свои счета в Alipay и WeChat в течение 15 минут без дополнительных затрат.</p>
-        <a href="https://t.me/ВАШ_ТЕЛЕГРАМ_КАНАЛ" class="btn" target="_blank">Оставить заявку</a>
+    <header>
+        <div class="container">
+            <h1>Obmen Market</h1>
+            <nav>
+                <ul>
+                    <li><a onclick="showSection('home')">Главная</a></li>
+                    <li><a onclick="showSection('exchange')">Обмен</a></li>
+                    <li><a onclick="showSection('about')">О нас</a></li>
+                    <li><a onclick="showSection('rules')">Правила</a></li>
+                    <li><a onclick="showSection('contact')">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="home" class="section active">
+        <div class="container">
+            <h2>Добро пожаловать в Obmen Market</h2>
+            <p>Быстро, надежно и удобно обменяйте валюту.</p>
+        </div>
+    </section>
+    
+    <section id="exchange" class="section">
+        <div class="container">
+            <h2>Калькулятор обмена</h2>
+            <form>
+                <label for="from-currency">Отдаете (RUB):</label>
+                <input type="number" id="from-currency" placeholder="Введите сумму">
+                
+                <label for="to-currency">Получаете (CNY):</label>
+                <input type="text" id="to-currency" placeholder="Автоматический расчет" disabled>
+                
+                <button type="button" class="btn" onclick="calculateExchange()">Обменять</button>
+            </form>
+        </div>
+    </section>
+    
+    <section id="about" class="section">
+        <div class="container">
+            <h2>О нас</h2>
+            <p>Информация о компании и ее услугах.</p>
+        </div>
+    </section>
+    
+    <section id="rules" class="section">
+        <div class="container">
+            <h2>Правила обмена</h2>
+            <p>Важные условия и правила работы.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Контакты</h2>
+            <p>Свяжитесь с нами через удобные каналы.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Obmen Market. Все права защищены.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
         
-        <div class="features">
-            <div class="feature">
-                <p>🔒 Надёжность: Безопасные транзакции</p>
-            </div>
-            <div class="feature">
-                <p>⚡ Скорость: Переводы за 15 минут</p>
-            </div>
-            <div class="feature">
-                <p>📞 Поддержка: Работаем 24/7</p>
-            </div>
-        </div>
-
-        <div class="faq">
-            <h2>Часто задаваемые вопросы</h2>
-            <p><strong>Как происходит пополнение?</strong></p>
-            <p>Оставьте заявку, обсудите детали с менеджером, переведите средства – и получите пополнение в течение 15 минут.</p>
-            
-            <p><strong>Какие гарантии?</strong></p>
-            <p>Работаем более 5 лет, провели 80,000 успешных операций.</p>
-        </div>
-    </div>
+        function calculateExchange() {
+            const rate = 0.075;
+            let rubAmount = document.getElementById("from-currency").value;
+            let cnyAmount = (rubAmount * rate).toFixed(2);
+            document.getElementById("to-currency").value = cnyAmount;
+        }
+    </script>
 </body>
 </html>
