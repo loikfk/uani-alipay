@@ -3,41 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Обмен Market</title>
+    <title>Obmen Market - Обмен валют</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #ffffff;
             color: #333;
         }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
         header {
-            background-color: #0073e6;
+            background-color: #004b97;
             color: white;
             padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        header h1 {
             text-align: center;
         }
         nav ul {
             display: flex;
             justify-content: center;
             list-style: none;
-            margin-top: 10px;
+            padding: 10px;
         }
         nav ul li {
             margin: 0 15px;
@@ -45,16 +34,55 @@
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
+            font-size: 18px;
+        }
+        .hero {
+            background: url('hero-bg.jpg') center/cover no-repeat;
+            text-align: center;
+            padding: 50px 20px;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+        }
+        .exchange-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .exchange-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .exchange-box {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .exchange-box select, .exchange-box input, .exchange-box button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
             cursor: pointer;
+            display: inline-block;
+            border: none;
+            font-size: 16px;
         }
-        .section {
-            display: none;
-            padding: 80px 20px;
-            min-height: 100vh;
-        }
-        .active {
-            display: block;
+        .contact-section {
+            text-align: center;
+            padding: 50px 0;
         }
         footer {
             text-align: center;
@@ -67,83 +95,55 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Obmen Market</h1>
-            <nav>
-                <ul>
-                    <li><a onclick="showSection('home')">Главная</a></li>
-                    <li><a onclick="showSection('exchange')">Обмен</a></li>
-                    <li><a onclick="showSection('about')">О нас</a></li>
-                    <li><a onclick="showSection('rules')">Правила</a></li>
-                    <li><a onclick="showSection('contact')">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>Obmen Market</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Обмен</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </nav>
     </header>
     
-    <section id="home" class="section active">
-        <div class="container">
-            <h2>Добро пожаловать в Obmen Market</h2>
-            <p>Быстро, надежно и удобно обменяйте валюту.</p>
-        </div>
+    <section class="hero">
+        <h1>Обмен валют между Россией и Китаем</h1>
+        <p>Быстро, надежно и удобно</p>
+        <a href="#exchange" class="btn">Начать обмен</a>
     </section>
     
-    <section id="exchange" class="section">
-        <div class="container">
-            <h2>Калькулятор обмена</h2>
-            <form>
-                <label for="from-currency">Отдаете (RUB):</label>
-                <input type="number" id="from-currency" placeholder="Введите сумму">
+    <section class="exchange-section" id="exchange">
+        <h2>Форма обмена</h2>
+        <div class="exchange-container">
+            <div class="exchange-box">
+                <label for="from">Вы отдаете:</label>
+                <select id="from">
+                    <option value="RUB">Рубли (RUB)</option>
+                    <option value="CNY">Юани (CNY)</option>
+                </select>
                 
-                <label for="to-currency">Получаете (CNY):</label>
-                <input type="text" id="to-currency" placeholder="Автоматический расчет" disabled>
+                <label for="amount">Сумма:</label>
+                <input type="number" id="amount" placeholder="Введите сумму">
                 
-                <button type="button" class="btn" onclick="calculateExchange()">Обменять</button>
-            </form>
+                <label for="to">Вы получаете:</label>
+                <select id="to">
+                    <option value="CNY">Юани (CNY)</option>
+                    <option value="RUB">Рубли (RUB)</option>
+                </select>
+                
+                <button class="btn">Отправить заявку</button>
+            </div>
         </div>
     </section>
     
-    <section id="about" class="section">
-        <div class="container">
-            <h2>О нас</h2>
-            <p>Информация о компании и ее услугах.</p>
-        </div>
-    </section>
-    
-    <section id="rules" class="section">
-        <div class="container">
-            <h2>Правила обмена</h2>
-            <p>Важные условия и правила работы.</p>
-        </div>
-    </section>
-    
-    <section id="contact" class="section">
-        <div class="container">
-            <h2>Контакты</h2>
-            <p>Свяжитесь с нами через удобные каналы.</p>
-        </div>
+    <section class="contact-section" id="contact">
+        <h2>Контакты</h2>
+        <p>Email: support@obmen.market</p>
+        <p>Телефон: +7 (900) 123-45-67</p>
     </section>
     
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Obmen Market. Все права защищены.</p>
-        </div>
+        <p>&copy; 2025 Obmen Market. Все права защищены.</p>
     </footer>
-    
-    <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
-        }
-        
-        function calculateExchange() {
-            const rate = 0.075;
-            let rubAmount = document.getElementById("from-currency").value;
-            let cnyAmount = (rubAmount * rate).toFixed(2);
-            document.getElementById("to-currency").value = cnyAmount;
-        }
-    </script>
 </body>
 </html>
